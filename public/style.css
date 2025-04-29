@@ -1,7 +1,7 @@
 :root {
     /* New color palette */
     --primary-blue: #427AA1;      /* Primary brand color */
-    --dark-blue: hsl(211, 23%, 52%);         /* Deeper accent for contrast */
+    --dark-blue: #427AA1;         /* Deeper accent for contrast */
     --light-cyan: #C9E4E7;        /* Light background/accent */
     --medium-teal: #326771;       /* Medium accent color */
     --bright-teal: #2C8C99;       /* Bright accent color */
@@ -23,6 +23,7 @@
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
+    
   }
   
   a {
