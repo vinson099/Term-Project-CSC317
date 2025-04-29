@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Register - ShopEasy</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -31,13 +33,21 @@
         </div>
     </header>
 
+    <section class="hero">
+        <div class="container">
+            <h1>Shop the latest trends</h1>
+            <p>Discover our curated collection of high-quality products at amazing prices.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
     <!-- Login/Register Content -->
     <div class="container">
         <h1 class="page-title">Account Access</h1>
-        
+
         <div class="auth-container">
             <!-- Login Form -->
-            <div class="auth-form">
+            <div class="auth-form" id="login-form">
                 <h2>Login</h2>
                 <form>
                     <div class="form-group">
@@ -48,12 +58,13 @@
                         <label for="login-password">Password</label>
                         <input type="password" id="login-password" placeholder="Enter your password">
                     </div>
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="btn">Login</button> 
                 </form>
+                <p>Forgot your password? <a href="#" class="link-btn">Reset it</a></p>
+                <p>Don't have an account? <a href="#" id="goToRegister" class="link-btn">Register</a></p>
             </div>
-            
             <!-- Register Form -->
-            <div class="auth-form">
+            <div class="auth-form" id="register-form" style="display:none;">
                 <h2>Register</h2>
                 <form>
                     <div class="form-group">
@@ -74,6 +85,7 @@
                     </div>
                     <button type="submit" class="btn">Register</button>
                 </form>
+                <p>Already have an account? <a href="#" id="goToLogin" class="link-btn">Login</a></p>
             </div>
         </div>
     </div>
@@ -90,7 +102,7 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="storeFront.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="login.html">Login</a></li>
@@ -120,5 +132,22 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const goToRegister = document.getElementById('goToRegister');
+        const goToLogin = document.getElementById('goToLogin');
+
+        goToRegister.addEventListener('click', () => {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+        });
+
+        goToLogin.addEventListener('click', () => {
+            registerForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
