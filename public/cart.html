@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Smart Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Smart Hub</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search quantum products...">
+            </div>
+            <nav class="nav-links">
+                <a href="storeFront.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQ</a>
+                <a href="login.html">Login</a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">2</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="cart-container">
+            <h1 class="page-title">Your Shopping Cart</h1>
+            
+            <div class="cart-content">
+                <div class="cart-items">
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://via.placeholder.com/150x150" alt="Quantum Core Q1">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-title">Quantum Core Q1</h3>
+                            <p class="item-description">50-qubit quantum processor with advanced error correction</p>
+                            <div class="item-quantity">
+                                <button class="quantity-btn">-</button>
+                                <input type="number" value="1" min="1" class="quantity-input">
+                                <button class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="item-price">
+                            <p class="price">$49,999.99</p>
+                            <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://via.placeholder.com/150x150" alt="Neural Quantum Chip">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-title">Neural Quantum Chip</h3>
+                            <p class="item-description">Hybrid quantum-classical processing unit</p>
+                            <div class="item-quantity">
+                                <button class="quantity-btn">-</button>
+                                <input type="number" value="1" min="1" class="quantity-input">
+                                <button class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="item-price">
+                            <p class="price">$29,999.99</p>
+                            <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>$79,999.98</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span>$7,999.99</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span>$87,999.97</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary checkout-btn">Proceed to Checkout</button>
+                    <button class="btn btn-secondary continue-shopping">Continue Shopping</button>
+                </div>
+            </div>
+
+            <div class="empty-cart-message" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added any quantum products to your cart yet.</p>
+                <a href="storeFront.html" class="btn btn-primary">Start Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3>About Smart Hub</h3>
+                <p>Your premier destination for quantum computing and advanced semiconductor solutions. Leading the way in quantum technology.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="storeFront.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="shipping.html">Shipping Policy</a></li>
+                    <li><a href="returns.html">Returns & Refunds</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Smart Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 
