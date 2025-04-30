@@ -37,3 +37,17 @@ links.forEach(link => {
 if (links.length > 0) {
     links[0].click(); // Simulate a click on the first link
 }
+
+
+// slideshow
+const slideshow = document.getElementById('slideshow');
+
+
+let scrollPos = 0;
+setInterval(() => {
+    scrollPos += 320;
+    if (scrollPos >= slideshow.scrollWidth - slideshow.clientWidth) {
+        scrollPos = 0;
+    }
+    slideshow.scrollTo({ left: scrollPos, behavior: 'smooth' });
+}, 3000);
