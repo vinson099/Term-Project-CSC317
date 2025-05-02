@@ -49,14 +49,14 @@
             <!-- Login Form -->
             <div class="auth-form" id="login-form">
                 <h2>Login</h2>
-                <form>
+                <form id="loginForm">
                     <div class="form-group">
                         <label for="login-email">Email</label>
-                        <input type="email" id="login-email" placeholder="Enter your email" name ="email" required>
+                        <input type="email" id="login-email" placeholder="Enter your email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="login-password">Password</label>
-                        <input type="password" id="login-password" placeholder="Enter your password">
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
                     </div>
                     <button type="submit" class="btn" id ="login-btn">Login</button> 
                 </form>
@@ -83,7 +83,7 @@
                         <label for="register-confirm-password">Confirm Password</label>
                         <input type="password" id="register-confirm-password" placeholder="Confirm your password">
                     </div>
-                    <button type="submit" class="btn">Register</button>
+                    <button type="submit" class="btn" id = "register-btn">Register</button>
                 </form>
                 <p>Already have an account? <a href="#" id="goToLogin" class="link-btn">Login</a></p>
             </div>
@@ -132,9 +132,9 @@
             </div>
         </div>
     </footer>
-
-    <script src="script.js"></script>
     <script src="backend.js"></script>
+    <script src="script.js"></script>
+    
         
     
 </body>
