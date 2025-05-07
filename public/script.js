@@ -1,14 +1,3 @@
-const profileIcon = document.querySelector('.profile-icon');
- profileIcon.addEventListener('mouseenter', () => {
-    profileIcon.style.transform = 'scale(1.1) rotate(5deg)';
-    profileIcon.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
- });
-
-profileIcon.addEventListener('mouseleave', () => {
-    profileIcon.style.transform = '';
-    profileIcon.style.boxShadow = '';
-});
-
 
 const links     = document.querySelectorAll('.profile-nav a');
 const sections = document.querySelectorAll('.profile-content .profile-section');

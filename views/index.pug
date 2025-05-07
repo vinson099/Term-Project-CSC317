@@ -1,0 +1,90 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title smartHub - Online Store
+    link(rel="stylesheet", href="/style.css")
+  
+  body
+    // Header
+    header
+      .container
+        .header-content
+          .logo
+            .logo-icon
+               |Q
+            |Smart
+            span Hub
+          .search-bar
+            input(type="text", placeholder="Search for products...")
+          .nav-links
+            a(href="/") Home
+            a(href="about.html") About
+            a(href="faq.html") FAQ
+            a(href="login.html") Login
+            a(href="cart.html", class="cart-icon") Cart 
+              span.cart-count 2
+            .profile-container
+              a(href="profile.html")
+                img(src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380", alt="Profile", class="profile-icon")
+
+    // Hero Section
+    section.hero
+      .container
+        h1 Explore the Quantum Frontier
+        p Discover our curated selection of cutting-edge quantum processors, qubit modules, and cryogenic systems.
+        a(href="product.html", class="btn") Shop Now
+
+    // Slideshow
+    .slideshow-container
+      .slideshow#slideshow
+        each product in store
+          img(src=product.image, alt=product.name)
+
+    // Products Section
+    .container
+      h2.page-title#products Our Products
+      .products-grid
+        each product in store
+          .product-card
+            .product-image
+              img(src=product.image, alt=product.name)
+            .product-info
+              h3.product-title= product.name
+              p.product-price= `$${product.price.toLocaleString()}`
+              a(href=`/product/${product.id}`, class="btn") View Details
+              a(href=`/product/${product.id}`, class="btn") Add to cart
+
+    // Footer
+    footer
+      .container
+        .footer-content
+          .footer-column
+            h3 Smart Hub
+            p Your one-stop shop for everyday essentials and unique finds.
+          .footer-column
+            h3 Quick Links
+            ul
+              li: a(href="/") Home
+              li: a(href="about.html") About Us
+              li: a(href="faq.html") FAQ
+              li: a(href="login.html") Login
+          .footer-column
+            h3 Customer Service
+            ul
+              li: a(href="#") Contact Us
+              li: a(href="#") Shipping Policy
+              li: a(href="#") Return Policy
+              li: a(href="#") Privacy Policy
+          .footer-column
+            h3 Connect With Us
+            ul
+              li: a(href="#") Facebook
+              li: a(href="#") Instagram
+              li: a(href="#") Twitter
+              li: a(href="#") Pinterest
+        .copyright
+          p &copy; 2025 Smart Hub. All Rights Reserved.
+
+    script(src="/script.js")

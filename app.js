@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const db= require("./db")
 
 const registerRoutes = require('./routes/register');
 const authRoutes = require("./routes/login")
@@ -7,10 +8,16 @@ const authRoutes = require("./routes/login")
 const app = express();
 const PORT = 3000;
 
+app.set("view engine", "pug");
+app.set("views", "./views");
+app.use(express.static("public"));
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname,'public')));
+//app.use(express.static(path.join(__dirname,'public')));
 
 
 app.use('/register',registerRoutes);
@@ -18,9 +25,27 @@ app.use('/login',authRoutes);
 
 
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "login.html"));
+// app.get("/", (req, res) => {
+//     res.sendFile(path.join(__dirname, "public", "login.html"));
+//   });
+
+  app.get("/", (req, res) => {
+    db.all("SELECT * FROM store", (err, store) => {
+      if (err) return res.status(500).send("Database error");
+      res.render("index", { store });
+    });
   });
+  
+  app.get("/product/:id", (req, res) => {
+    db.get("SELECT * FROM products WHERE id = ?", [req.params.id], (err, product) => {
+      if (err) return res.status(500).send("Database error");
+      if (!product) return res.status(404).send("Product not found");
+      res.render("product", { product });
+    });
+  });
+
+
+
 
 
 app.listen(PORT, () => {

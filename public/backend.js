@@ -23,7 +23,7 @@ document.getElementById('register-btn').addEventListener('click', async() => {
         
         if (response.ok && result.success) {
             alert(result.message);
-            window.location.href = result.redirect;
+            
         } else {
             alert(result.message || 'Registration failed');
         }

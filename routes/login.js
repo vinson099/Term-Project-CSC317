@@ -21,11 +21,11 @@ router.post("/", (req, res) => {
     }
 
     if (!row) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: `${username} doesn's exist, Please! register` });
     }
 
     if (row.password !== password) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "Wrong password, 3 more attemps left until locked" });
     }
 
     // Send success response with redirect URL
