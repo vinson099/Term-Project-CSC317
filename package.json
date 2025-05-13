@@ -16,10 +16,10 @@
     "url": "https://github.com/vinson099/Term-Project-CSC317/issues"
   },
   "homepage": "https://github.com/vinson099/Term-Project-CSC317#readme",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0",
     "pug": "^3.0.3",
     "sqlite3": "^5.1.7"
-  }
+  },
+  "description": ""
 }

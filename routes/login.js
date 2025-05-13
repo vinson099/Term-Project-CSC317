@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
     res.json({ 
       success: true,
       message: `Welcome back, ${row.fname}!`,
-      redirect: "/storeFront.html"
+      redirect: "/"
     });
   });
 });

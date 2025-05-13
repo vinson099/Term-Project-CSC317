@@ -4,6 +4,8 @@ const db= require("./db")
 
 const registerRoutes = require('./routes/register');
 const authRoutes = require("./routes/login")
+const profileRoutes = require("./routes/profile");
+const logoutRouter = require('./routes/logout');
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +13,9 @@ const PORT = 3000;
 app.set("view engine", "pug");
 app.set("views", "./views");
 app.use(express.static("public"));
+app.use('/profile', profileRoutes);
+app.use('/logout', logoutRouter);
+
 
 
 
