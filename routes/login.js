@@ -1,6 +1,6 @@
 const express = require("express");
 const router  = express.Router();
-const db      = require("../db.js");
+const db      = require("../data/db");
 
 // POST /login — authenticate user
 router.post("/", (req, res) => {
@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
     res.json({ 
       success: true,
       message: `Welcome back, ${row.fname}!`,
-      redirect: "/storeFront.html"
+      redirect: "/"
     });
   });
 });

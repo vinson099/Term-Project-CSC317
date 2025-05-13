@@ -1,9 +1,11 @@
 const express = require("express")
 const path = require("path")
-const db= require("./db")
+const db= require("./data/db")
 
 const registerRoutes = require('./routes/register');
 const authRoutes = require("./routes/login")
+const products = require('./routes/front')
+const product=require('./routes/front')
 
 const app = express();
 const PORT = 3000;
@@ -22,6 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/register',registerRoutes);
 app.use('/login',authRoutes);
+app.use('/',products)
+app.use('/product',product)
 
 
 
@@ -29,20 +33,7 @@ app.use('/login',authRoutes);
 //     res.sendFile(path.join(__dirname, "public", "login.html"));
 //   });
 
-  app.get("/", (req, res) => {
-    db.all("SELECT * FROM store", (err, store) => {
-      if (err) return res.status(500).send("Database error");
-      res.render("index", { store });
-    });
-  });
   
-  app.get("/product/:id", (req, res) => {
-    db.get("SELECT * FROM products WHERE id = ?", [req.params.id], (err, product) => {
-      if (err) return res.status(500).send("Database error");
-      if (!product) return res.status(404).send("Product not found");
-      res.render("product", { product });
-    });
-  });
 
 
 
