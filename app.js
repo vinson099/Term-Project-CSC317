@@ -49,6 +49,24 @@ app.use('/login',authRoutes);
     });
   });
 
+// Search API endpoint
+app.get("/api/search", (req, res) => {
+  const query = req.query.q.toLowerCase();
+  
+  db.all("SELECT * FROM products", [], (err, products) => {
+    if (err) {
+      return res.json({ success: false, error: "Database error" });
+    }
+
+    const results = products.filter(product => {
+      const searchableText = `${product.title} ${product.description} ${product.features}`.toLowerCase();
+      return searchableText.includes(query);
+    });
+
+    res.json({ success: true, results });
+  });
+});
+
 
 
 

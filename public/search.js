@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const searchForm = document.getElementById('search-form');
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
+    const searchInput = document.querySelector('.search-bar input');
+    const searchResults = document.createElement('div');
+    searchResults.className = 'search-results';
+    searchResults.style.display = 'none';
+    document.querySelector('.search-bar').appendChild(searchResults);
+
     let timeoutId;
 
     // Handle search input with debouncing
@@ -20,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Handle form submission
-    searchForm.addEventListener('submit', (e) => {
+    document.querySelector('.search-bar').addEventListener('submit', (e) => {
         e.preventDefault();
         const query = searchInput.value.trim();
         if (query) {
@@ -55,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const html = results.map(item => `
             <div class="search-item">
-                <img src="${item.image}" alt="${item.name}">
+                <img src="${item.imageUrl}" alt="${item.title}">
                 <div class="search-item-info">
-                    <h3>${item.name}</h3>
-                    <p class="price">$${item.price}</p>
+                    <h3>${item.title}</h3>
+                    <p class="price">$${item.price.toLocaleString()}</p>
                 </div>
                 <a href="/product/${item.id}" class="btn btn-primary">View</a>
             </div>
