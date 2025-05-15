@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
     return res.status(400).json({ message: "Username and password are required" });
   }
 
-  const user = `SELECT id, fname, password
+  const user = `SELECT id, fname, username, password
                FROM users
                WHERE username = ?`;
 
@@ -21,12 +21,19 @@ router.post("/", (req, res) => {
     }
 
     if (!row) {
-      return res.status(401).json({ message: `${username} doesn's exist, Please! register` });
+      return res.status(401).json({ message: `${username} doesn't exist, Please! register` });
     }
 
     if (row.password !== password) {
       return res.status(401).json({ message: "Wrong password, 3 more attemps left until locked" });
     }
+
+    // Store user info in session
+    req.session.user = {
+      id: row.id,
+      username: row.username,
+      fname: row.fname
+    };
 
     // Send success response with redirect URL
     res.json({ 

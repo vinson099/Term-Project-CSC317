@@ -52,6 +52,7 @@ document.getElementById("login-btn").addEventListener("click", async() => {
       const result = await resp.json();
       
       if (resp.ok && result.success) {
+        localStorage.setItem('username', username);
         alert(result.message);
         window.location.href = result.redirect;
       } else {
@@ -63,3 +64,6 @@ document.getElementById("login-btn").addEventListener("click", async() => {
     }
 });
   
+//for cart
+const cartItem = document.getElementById('cart-items')
+cartItems.innerhtml=response;

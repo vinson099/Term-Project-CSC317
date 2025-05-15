@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - SmartHub</title>
+    <title>Shipping Policy - SmartHub</title>
     <link rel="stylesheet" href="style.css">
-    <script src="cart.js"></script>
 </head>
 <body>
     <header>
@@ -15,7 +14,7 @@
                     <div class="logo-icon">Q</div>
                     Smart<span>Hub</span>
                 </div>
-                <div class="search-bar">
+                 <div class="search-bar">
                     <input type="text" placeholder="Search for products...">
                 </div>
                 <div class="nav-links">
@@ -23,12 +22,6 @@
                     <a href="about.html">About</a>
                     <a href="faq.html">FAQ</a>
                     <a href="login.html">Login</a>
-                    <a href="cart.html" class="cart-icon">Cart <span class="cart-count">0</span></a>
-                    
-                    <a href="profile.html" >
-                        <img src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380"
-                        alt="Profile"  class ="profile-icon">
-                    </a>
                 </div>
             </div>
         </div>
@@ -42,36 +35,56 @@
         </div>
     </section>
 
-    <main class="container">
-        <h1 class="page-title">Shopping Cart</h1>
-        <div class="cart-container">
-            <div class="cart-items">
-                <!-- Cart items will be dynamically added here -->
-            </div>
-            <div class="cart-summary">
-                <h2>Order Summary</h2>
-                <div class="summary-row">
-                    <span>Subtotal:</span>
-                    <span id="subtotal">$0.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Tax (10%):</span>
-                    <span id="tax">$0.00</span>
-                </div>
-                <div class="summary-row total">
-                    <span>Total:</span>
-                    <span id="total">$0.00</span>
-                </div>
-                <button id="checkout-btn" class="btn btn-primary">Proceed to Checkout</button>
-            </div>
-        </div>
+    <main class="container policy-container">
+        <h1>Shipping Policy</h1>
+        
+        <section class="policy-section">
+            <h2>Processing Time</h2>
+            <p>All orders are processed within 1-2 business days. Orders placed during weekends or holidays will be processed on the next business day.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Shipping Methods & Delivery Times</h2>
+            <ul>
+                <li><strong>Standard Shipping:</strong> 5-7 business days</li>
+                <li><strong>Express Shipping:</strong> 2-3 business days</li>
+                <li><strong>Next Day Delivery:</strong> Next business day</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Shipping Rates</h2>
+            <ul>
+                <li>Free shipping on orders over $50</li>
+                <li>Standard shipping: $5.99</li>
+                <li>Express shipping: $12.99</li>
+                <li>Next day delivery: $24.99</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>International Shipping</h2>
+            <p>We currently ship to the following regions:</p>
+            <ul>
+                <li>United States (all 50 states)</li>
+                <li>Canada</li>
+                <li>European Union</li>
+                <li>United Kingdom</li>
+            </ul>
+            <p>International shipping rates and delivery times vary by location.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Tracking Your Order</h2>
+            <p>Once your order ships, you will receive a shipping confirmation email with a tracking number. You can track your order status through our website or the carrier's tracking system.</p>
+        </section>
     </main>
 
-    <footer>
+     <footer>
         <div class="container footer-content">
             <div class="footer-column">
                 <h3>About Smart Hub</h3>
-                <p>Your premier destination for quantum computing and advanced semiconductor solutions. Leading the way in quantum technology.</p>
+                <p>Your one-stop destination for quantum computing solutions. Premium hardware, competitive pricing, and expert support.</p>
             </div>
             <div class="footer-column">
                 <h3>Quick Links</h3>
@@ -86,7 +99,6 @@
                 <h3>Customer Service</h3>
                 <ul>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="shipping.html">Shipping Policy</a></li>
                     <li><a href="returns.html">Returns & Refunds</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                     <li><a href="terms.html">Terms of Service</a></li>
@@ -107,4 +119,4 @@
         </div>
     </footer>
 </body>
-</html> 
+</html>

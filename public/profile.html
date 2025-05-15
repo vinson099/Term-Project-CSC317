@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - smartHub</title>
     <link rel="stylesheet" href="style.css">
+    <script src="profile.js"></script>
 </head>
+
 <body>
     <header>
-        
+
         <div class="container">
             <div class="header-content">
                 <div class="logo">
@@ -24,27 +27,35 @@
                     <a href="faq.html">FAQ</a>
                     <a href="login.html">Login</a>
                     <a href="cart.html" class="cart-icon">Cart <span class="cart-count">2</span></a>
-                    
-                    <a href="profile.html" >
+
+                    <a href="profile.html">
                         <img src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380"
-                        alt="Profile"  class ="profile-icon">
+                            alt="Profile" class="profile-icon">
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
+    <section class="hero">
+        <div class="container">
+            <h1>Shop the latest trends</h1>
+            <p>Discover our curated collection of high-quality products at amazing prices.</p>
+            <a href="product.html" class="btn">Shop Now</a>
+        </div>
+    </section>
+
     <main class="container">
         <h1 class="page-title">My Profile</h1>
         <div class="profile-container">
-            
-            
+
+
             <div class="profile-grid">
                 <div class="profile-sidebar">
                     <div class="profile-avatar">
-                        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="avatar-image">
-                        <h2 class="user-name">John Doe</h2>
-                        <p class="user-email">john.doe@example.com</p>
+                        
+                        <h2 class="user-name">Loading...</h2>
+                        <p class="user-email">Loading...</p>
                     </div>
                     <nav class="profile-nav">
                         <ul>
@@ -54,7 +65,9 @@
                             <li><a href="#payment-methods">Payment Methods</a></li>
                             <li><a href="#wishlist">Wishlist</a></li>
                             <li><a href="#settings">Settings</a></li>
-                        </ul>
+                        </ul> 
+                        <button type="submit" class="btn btn-primary">Edit Profile</button>
+                       
                     </nav>
                 </div>
 
@@ -64,17 +77,15 @@
                         <form class="profile-form">
                             <div class="form-group">
                                 <label for="full-name">Full Name</label>
-                                <input type="text" id="full-name" name="full-name" value="John Doe">
+                                <input type="text" id="full-name" name="full-name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" value="john.doe@example.com">
+                                <input type="email" id="email" name="email" required readonly>
                             </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" value="+1 (555) 123-4567">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <div class="nav-links">
+                            <button id="logout-btn" class="btn btn-danger">Logout</button>
+                        </div>
                         </form>
                     </section>
 
@@ -196,7 +207,7 @@
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="storeFront.html">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -205,6 +216,7 @@
             <div class="footer-column">
                 <h3>Customer Service</h3>
                 <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="shipping.html">Shipping Policy</a></li>
                     <li><a href="returns.html">Returns & Refunds</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
@@ -214,10 +226,10 @@
             <div class="footer-column">
                 <h3>Connect With Us</h3>
                 <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="https://www.facebook.com/">Facebook</a></li>
+                    <li><a href="https://x.com/">Twitter</a></li>
+                    <li><a href="https://www.instagram.com">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
                 </ul>
             </div>
         </div>
@@ -227,4 +239,5 @@
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>

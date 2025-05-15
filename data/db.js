@@ -1,4 +1,4 @@
-const sqlite3 = require("sqlite3");
+const sqlite3 = require("sqlite3").verbose();
 const path    = require("path");
 
 // Open (or create) the database file
@@ -16,7 +16,8 @@ db.serialize(() => {
        id       INTEGER PRIMARY KEY AUTOINCREMENT,
        fname    TEXT,
        username TEXT UNIQUE NOT NULL,
-       password TEXT NOT NULL
+       password TEXT NOT NULL,
+       cart     TEXT DEFAULT '[]'
      );`,
     (err) => {
       if (err) console.error("Error creating users table:", err.message);
@@ -37,15 +38,23 @@ db.serialize(() => {
       else {
         console.log("Products table is ready.");
       }
-      });
-      db.run(`CREATE TABLE IF NOT EXISTS store (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        price REAL,
-        description TEXT,
-        image TEXT
-      )`);
-
+    }
+  );
+  db.run(
+    `CREATE TABLE IF NOT EXISTS store (
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       name TEXT NOT NULL,
+       price REAL NOT NULL,
+       description TEXT,
+       image TEXT,
+       category TEXT,
+       stock INTEGER DEFAULT 0
+     );`,
+    (err) => {
+      if (err) console.error("Error creating store table:", err.message);
+      else console.log("Store table is ready.");
+    }
+  );
 });
 
 module.exports = db;

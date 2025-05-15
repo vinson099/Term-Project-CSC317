@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - smartHub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <div class="logo-icon">Q</div>
+        Smart<span>Hub</span>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search products...">
+      </div>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html">Login</a>
+        <a href="cart.html" class="cart-icon">
+          Cart <span class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Shop the latest trends</h1>
+      <p>Discover our curated collection of high-quality products at amazing prices.</p>
+      <a href="product.html" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="product-detail">
+      <!-- Product items will be loaded dynamically -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-column">
+        <h3>About Smart Hub</h3>
+        <p>Your premier destination for quantum computing and advanced semiconductor solutions. Leading the way in quantum technology.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Customer Service</h3>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="shipping.html">Shipping Policy</a></li>
+          <li><a href="returns.html">Returns & Refunds</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect With Us</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/">Facebook</a></li>
+          <li><a href="https://x.com/">Twitter</a></li>
+          <li><a href="https://www.instagram.com">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Smart Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Get current user from localStorage
+    const currentUser = localStorage.getItem('username');
+    
+    // Check if user is logged in
+    if (!currentUser) {
+      window.location.href = '/login.html';
+    }
+
+    // Load products when page loads
+    window.onload = function() {
+      loadProducts();
+    };
+
+    // Load products from server
+    function loadProducts() {
+      fetch('/products')
+        .then(response => response.json())
+        .then(products => {
+          displayProducts(products);
+        })
+        .catch(error => console.error('Error loading products:', error));
+    }
+
+    // Display products
+    function displayProducts(products) {
+      const productContainer = document.querySelector('.product-detail');
+      
+      productContainer.innerHTML = products.map(product => `
+        <div class="product-info">
+          <div class="product-image">
+            <img src="${product.image_url}" alt="${product.title}" class="product-detail-image">
+          </div>
+          <h1 class="product-title">${product.title}</h1>
+          <p class="product-price">$${product.price.toFixed(2)}</p>
+          <p class="product-description">${product.description}</p>
+          <div class="product-features">
+            <h3>Features</h3>
+            <ul>
+              ${product.features.split(',').map(feature => `<li>${feature.trim()}</li>`).join('')}
+            </ul>
+          </div>
+          <form class="add-to-cart-form" onsubmit="addToCart(event, ${product.id})">
+            <div class="form-group">
+              <label for="qty-${product.id}">Quantity</label>
+              <input type="number" id="qty-${product.id}" name="quantity" min="1" value="1">
+            </div>
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+          </form>
+        </div>
+      `).join('');
+    }
+
+    // Add item to cart
+    function addToCart(event, productId) {
+      event.preventDefault();
+      
+      const quantity = parseInt(event.target.querySelector('input[name="quantity"]').value);
+      
+      fetch('/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: currentUser,
+          productId: productId,
+          quantity: quantity
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Item added to cart successfully!');
+          updateCartCount();
+        } else {
+          alert('Failed to add item to cart');
+        }
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
+        alert('Error adding item to cart');
+      });
+    }
+
+    // Update cart count
+    function updateCartCount() {
+      fetch(`/cart/${currentUser}`)
+        .then(response => response.json())
+        .then(cart => {
+          const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+          document.querySelector('.cart-count').textContent = totalItems;
+        })
+        .catch(error => console.error('Error updating cart count:', error));
+    }
+  </script>
+</body>
+
+</html>
