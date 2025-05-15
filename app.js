@@ -7,7 +7,7 @@ const registerRoutes = require('./routes/register');
 const authRoutes = require("./routes/login")
 const products = require('./routes/front')
 const product=require('./routes/front')
-const cartRoutes = require('./routes/cart');
+
 
 const profileRoutes = require("./routes/profile");
 const logoutRouter = require('./routes/logout');
@@ -31,7 +31,9 @@ app.set("views", "./views");
 app.use(express.static("public"));
 app.use('/profile', profileRoutes);
 app.use('/logout', logoutRouter);
-app.use('/cart', cartRoutes);
+
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,7 +53,23 @@ app.use('/product',product)
 
   
 
-
+// Search API endpoint
+app.get("/api/search", (req, res) => {
+    const query = req.query.q.toLowerCase();
+    
+    db.all("SELECT * FROM products", [], (err, products) => {
+      if (err) {
+        return res.json({ success: false, error: "Database error" });
+      }
+  
+      const results = products.filter(product => {
+        const searchableText = `${product.title} ${product.description} ${product.features}`.toLowerCase();
+        return searchableText.includes(query);
+      });
+  
+      res.json({ success: true, results });
+    });
+  });
 
 
 

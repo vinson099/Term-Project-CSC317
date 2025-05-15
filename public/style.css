@@ -147,7 +147,6 @@ header {
 .search-bar {
   flex-grow: 1;
   margin: 0 2rem;
-  
   position: relative;
 }
 
@@ -162,8 +161,6 @@ header {
   transition: var(--trans);
   
 }
-
-
 
 .search-bar input::placeholder {
   color: rgba(255, 255, 255, 0.5);
@@ -508,7 +505,7 @@ margin-bottom: 8px;
   height: 3.15rem;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -1660,8 +1657,6 @@ line-height: 1.8;
     margin-bottom: 1rem;
 }
 
-// filepath: /Users/B!n!@m/Documents/School doc's/spring_25/INTRO TO WEB SOFTWARE DEV/Term-Project-CSC317/public/style.css
-// ...existing code...
 
 /* Shipping Policy Styles */
 .policy-container {
@@ -1717,7 +1712,7 @@ line-height: 1.8;
         font-size: 1.25rem;
     }
   }
-  
+
 /* Shipping Policy Styles */
 .policy-container {
     max-width: 800px;
@@ -1771,4 +1766,74 @@ line-height: 1.8;
     .policy-section h2 {
         font-size: 1.25rem;
     }
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  margin-top: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  gap: 1rem;
+  transition: var(--trans);
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+.search-item:hover {
+  background-color: var(--gray-100);
+}
+
+.search-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.search-item-info {
+  flex: 1;
+}
+
+.search-item-info h3 {
+  font-size: 1rem;
+  color: var(--dark);
+  margin-bottom: 0.25rem;
+}
+
+.search-item-info .price {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.search-item .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.no-results {
+  padding: 1rem;
+  text-align: center;
+  color: var(--gray-800);
+}
+
+.error {
+  padding: 1rem;
+  text-align: center;
+  color: var(--danger);
 }
