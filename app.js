@@ -7,6 +7,8 @@ const registerRoutes = require('./routes/register');
 const authRoutes = require("./routes/login")
 const products = require('./routes/front')
 const product=require('./routes/front')
+const cartRoutes = require('./routes/cart');
+
 
 
 const profileRoutes = require("./routes/profile");
@@ -35,15 +37,19 @@ app.use('/logout', logoutRouter);
 
 
 
+// Move these lines BEFORE your route definitions
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//app.use(express.static(path.join(__dirname,'public')));
+// Then define your routes
+app.use('/cart', cartRoutes);
+app.use('/register', registerRoutes);
+app.use('/login', authRoutes);
+app.use('/profile', profileRoutes);
+app.use('/logout', logoutRouter);
+app.use('/', products);
+app.use('/product', product);
 
-app.use('/register',registerRoutes);
-app.use('/login',authRoutes);
-app.use('/',products)
-app.use('/product',product)
 
 
 

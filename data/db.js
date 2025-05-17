@@ -17,7 +17,7 @@ db.serialize(() => {
        fname    TEXT,
        username TEXT UNIQUE NOT NULL,
        password TEXT NOT NULL,
-       cart     TEXT DEFAULT '[]'
+       cart TEXT DEFAULT '[]'
      );`,
     (err) => {
       if (err) console.error("Error creating users table:", err.message);

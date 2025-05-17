@@ -65,5 +65,7 @@ document.getElementById("login-btn").addEventListener("click", async() => {
 });
   
 //for cart
-const cartItem = document.getElementById('cart-items')
-cartItems.innerhtml=response;
+const cartItems = document.getElementById('cart-items');
+if (cartItems) {
+  cartItems.innerHTML = response;
+}
