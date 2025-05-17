@@ -13,8 +13,9 @@ html
       .container
         .header-content
           .logo
-            .logo-icon Q
-            | Smart
+            .logo-icon
+               |Q
+            |Smart
             span Hub
           .search-bar
             input(type="text", placeholder="Search for products...")
@@ -23,11 +24,12 @@ html
             a(href="about.html") About
             a(href="faq.html") FAQ
             a(href="login.html") Login
-            a(href="/cart.html", class="cart-icon") Cart
-              span.cart-count 2
-          .profile-container
-            a(href="profile.html")
-              img(src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380", alt="Profile", class="profile-icon")
+            a(href="cart.html", class="cart-icon") 
+              |🛒
+              span.cart-count
+            .profile-container
+              a(href="profile.html")
+                img(src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380", alt="Profile", class="profile-icon")
     
     // Hero Section
     section.hero
