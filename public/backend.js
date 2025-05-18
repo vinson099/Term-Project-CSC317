@@ -63,6 +63,18 @@ document.getElementById("login-btn").addEventListener("click", async() => {
       alert("An error occurred during login");
     }
 });
+
+document.getElementById('goToRegister').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('login-form').style.display = 'none';
+  document.getElementById('register-form').style.display = 'block';
+});
+
+document.getElementById('goToLogin').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('register-form').style.display = 'none';
+  document.getElementById('login-form').style.display = 'block';
+});
   
 //for cart
 const cartItem = document.getElementById('cart-items')
