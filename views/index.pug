@@ -24,7 +24,7 @@ html(lang="en")
             a(href="about.html") About
             a(href="faq.html") FAQ
             a(href="login.html") Login
-            a(href="cart.html", class="cart-icon") 
+            a(href="/cart/view", class="cart-icon") 
               |🛒
               span.cart-count
             .profile-container
@@ -50,7 +50,7 @@ html(lang="en")
               p.price= `$${product.price.toLocaleString()}`
               .slideshow-buttons
                 a(href=`/product/${product.id}`, class="btn btn-primary") Buy Now
-                button(onclick=`addToCart('${product.id}')`, class="btn btn-secondary") Add to Cart
+                button.btn.add-to-cart-btn(data-product-id=product.id) Add to cart
 
     // Products Section
     .container
@@ -65,7 +65,7 @@ html(lang="en")
               p.product-price= `$${product.price.toLocaleString()}`
               .product-buttons
                 a(href=`/product/${product.id}`, class="btn btn-primary") Buy Now
-                button(onclick=`addToCart('${product.id}')`, class="btn btn-secondary") Add to Cart
+                button.btn.add-to-cart-btn(data-product-id=product.id) Add to cart
 
     // Footer
     footer
@@ -100,3 +100,28 @@ html(lang="en")
           p &copy; 2025 Smart Hub. All Rights Reserved.
 
     script(src="/script.js")
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+      addToCartBtns.forEach(function(btn) {
+        btn.addEventListener('click', async function() {
+          const productId = Number(this.getAttribute('data-product-id'));
+          try {
+            const response = await fetch('/cart/add', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ productId })
+            });
+            const data = await response.json();
+            if (data.success) {
+              alert('Added to cart!');
+            } else {
+              alert(data.message || 'Failed to add to cart');
+            }
+          } catch (err) {
+            alert('Error adding to cart');
+          }
+        });
+      });
+    });

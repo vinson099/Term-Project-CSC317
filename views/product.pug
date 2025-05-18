@@ -24,7 +24,7 @@ html
             a(href="/about.html") About
             a(href="/faq.html") FAQ
             a(href="/login.html") Login
-            a(href="cart.html", class="cart-icon") 
+            a(href="/cart/view", class="cart-icon") 
               |🛒
           .profile-container
             a(href="profile.html")
@@ -89,9 +89,9 @@ html
 
   script.
     document.addEventListener('DOMContentLoaded', function() {
-      const addToCartBtn = document.querySelector('.add-to-cart-btn');
-      if (addToCartBtn) {
-        addToCartBtn.addEventListener('click', async function() {
+      const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+      addToCartBtns.forEach(function(btn) {
+        btn.addEventListener('click', async function() {
           const productId = Number(this.getAttribute('data-product-id'));
           try {
             const response = await fetch('/cart/add', {
@@ -109,5 +109,5 @@ html
             alert('Error adding to cart');
           }
         });
-      }
+      });
     });
