@@ -43,68 +43,6 @@ router.get('/', isAuthenticated, (req, res) => {
   });
 });
 
-// // Add item to cart
-// router.post('/add', isAuthenticated, (req, res) => {
-//   const userId = req.session.user.id;
-//   const { productId, quantity = 1 } = req.body;
-  
-//   if (!productId) {
-//     return res.status(400).json({ success: false, message: 'Product ID is required' });
-//   }
-  
-//   // First get the current cart
-//   db.get('SELECT cart FROM users WHERE id = ?', [userId], (err, user) => {
-//     if (err || !user) {
-//       return res.status(500).json({ success: false, message: 'Error accessing cart' });
-//     }
-    
-//     let cart = [];
-//     try {
-//       cart = JSON.parse(user.cart || '[]');
-//     } catch (e) {
-//       console.error('Error parsing cart:', e);
-//     }
-    
-//     // Check if product exists
-//     db.get('SELECT * FROM products WHERE id = ?', [productId], (err, product) => {
-//       if (err || !product) {
-//         return res.status(404).json({ success: false, message: 'Product not found' });
-//       }
-      
-//       // Check if product is already in cart
-//       const existingItem = cart.find(item => item.productId === productId);
-      
-//       if (existingItem) {
-//         existingItem.quantity += quantity;
-//       } else {
-//         cart.push({
-//           productId,
-//           title: product.title,
-//           price: product.price,
-//           image_url: product.image_url,
-//           quantity
-//         });
-//       }
-      
-//       // Update the cart in the database
-//       db.run('UPDATE users SET cart = ? WHERE id = ?', 
-//         [JSON.stringify(cart), userId],
-//         function(err) {
-//           if (err) {
-//             return res.status(500).json({ success: false, message: 'Error updating cart' });
-//           }
-          
-//           res.json({ 
-//             success: true, 
-//             message: 'Product added to cart',
-//             cart
-//           });
-//         }
-//       );
-//     });
-//   });
-// });
-
 // Remove item from cart
 router.post('/remove', isAuthenticated, (req, res) => {
   const userId = req.session.user.id;
@@ -116,7 +54,15 @@ router.post('/remove', isAuthenticated, (req, res) => {
   
   db.get('SELECT cart FROM users WHERE id = ?', [userId], (err, user) => {
     if (err || !user) {
-      return res.status(500).json({ success: false, message: 'Error accessing cart' });
+      if (err) {
+        return res.status(500).json({ success: false, message: 'Error accessing cart' });
+      }
+
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      
+      
     }
     
     let cart = [];
@@ -155,7 +101,15 @@ router.post('/update', isAuthenticated, (req, res) => {
   
   db.get('SELECT cart FROM users WHERE id = ?', [userId], (err, user) => {
     if (err || !user) {
-      return res.status(500).json({ success: false, message: 'Error accessing cart' });
+      if (err) {
+        return res.status(500).json({ success: false, message: 'Error accessing cart' });
+      }
+
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      
+      
     }
     
     let cart = [];
@@ -204,7 +158,15 @@ router.post('/add', isAuthenticated, (req, res) => {
 
   db.get('SELECT cart FROM users WHERE id = ?', [userId], (err, user) => {
     if (err || !user) {
-      return res.status(500).json({ success: false, message: 'Error accessing cart' });
+      if (err) {
+        return res.status(500).json({ success: false, message: 'Error accessing cart' });
+      }
+
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      
+      
     }
 
     let cart = [];
@@ -251,4 +213,51 @@ router.post('/add', isAuthenticated, (req, res) => {
   });
 });
 
+function renderCart(cart) {
+  const cartItemsContainer = document.getElementById('cart-items');
+  const subtotalSpan = document.getElementById('subtotal');
+  const taxSpan = document.getElementById('tax');
+  const totalSpan = document.getElementById('total');
+
+  let subtotal = 0;
+
+  // Clear previous items
+  cartItemsContainer.innerHTML = '';
+
+  if (!cart || cart.length === 0) {
+    cartItemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+    subtotalSpan.textContent = '$0.00';
+    taxSpan.textContent = '$0.00';
+    totalSpan.textContent = '$0.00';
+    return;
+  }
+
+  cart.forEach(item => {
+    // Render each item (you can improve this markup)
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'cart-item';
+    itemDiv.innerHTML = `
+      <div>
+        <img src="${item.image_url}" alt="${item.title}" style="width:80px;vertical-align:middle;">
+        <span>${item.title}</span>
+      </div>
+      <div>
+        $${item.price.toFixed(2)} × ${item.quantity}
+      </div>
+      <div>
+        $${(item.price * item.quantity).toFixed(2)}
+      </div>
+    `;
+    cartItemsContainer.appendChild(itemDiv);
+
+    subtotal += item.price * item.quantity;
+  });
+
+  const tax = subtotal * 0.10; // 10% tax
+  const total = subtotal + tax;
+
+  subtotalSpan.textContent = `$${subtotal.toFixed(2)}`;
+  taxSpan.textContent = `$${tax.toFixed(2)}`;
+  totalSpan.textContent = `$${total.toFixed(2)}`;
+}
 module.exports = router;

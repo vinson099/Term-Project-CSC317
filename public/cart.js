@@ -26,15 +26,13 @@ async function loadCart() {
   try {
     const response = await fetch('/cart');
     const data = await response.json();
-
     if (data.success) {
       displayCart(data.cart);
-      updateCartCounter(data.cart);
     } else {
-      console.error('Failed to load cart:', data.message);
+      displayCart([]);
     }
-  } catch (error) {
-    console.error('Error loading cart:', error);
+  } catch (err) {
+    displayCart([]);
   }
 }
 
@@ -111,24 +109,33 @@ async function updateCartItem(productId, quantity) {
 
 function displayCart(cart) {
   const cartContainer = document.getElementById('cart-items');
-  
+  const subtotalSpan = document.getElementById('subtotal');
+  const taxSpan = document.getElementById('tax');
+  const totalSpan = document.getElementById('total');
+
   if (!cartContainer) {
     console.error('Cart container not found');
     return;
   }
-  
-  if (cart.length === 0) {
+
+  // Clear previous items
+  cartContainer.innerHTML = '';
+
+  if (!cart || cart.length === 0) {
     cartContainer.innerHTML = '<p>Your cart is empty</p>';
+    if (subtotalSpan) subtotalSpan.textContent = '$0.00';
+    if (taxSpan) taxSpan.textContent = '$0.00';
+    if (totalSpan) totalSpan.textContent = '$0.00';
     return;
   }
-  
-  let totalPrice = 0;
+
+  let subtotal = 0;
   let html = '<ul class="cart-list">';
-  
+
   cart.forEach(item => {
     const itemTotal = item.price * item.quantity;
-    totalPrice += itemTotal;
-    
+    subtotal += itemTotal;
+
     html += `
       <li class="cart-item">
         <div class="cart-item-image">
@@ -147,17 +154,24 @@ function displayCart(cart) {
       </li>
     `;
   });
-  
+
   html += '</ul>';
-  html += `<div class="cart-total">Total: $${totalPrice.toFixed(2)}</div>`;
-  html += `<button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>`;
-  
   cartContainer.innerHTML = html;
-  
-  // Add event listener for checkout button
-  document.getElementById('checkout-btn').addEventListener('click', function() {
-    alert('Checkout functionality to be implemented!');
-  });
+
+  const tax = subtotal * 0.10; // 10% tax
+  const total = subtotal + tax;
+
+  if (subtotalSpan) subtotalSpan.textContent = `$${subtotal.toFixed(2)}`;
+  if (taxSpan) taxSpan.textContent = `$${tax.toFixed(2)}`;
+  if (totalSpan) totalSpan.textContent = `$${total.toFixed(2)}`;
+
+  // Add event listener for checkout button if it exists
+  const checkoutBtn = document.getElementById('checkout-btn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function() {
+      alert('Checkout functionality to be implemented!');
+    });
+  }
 }
 
 function updateCartCounter(cart) {

@@ -87,27 +87,26 @@ html
     script(src="/script.js")
 
   script.
-      document.addEventListener('DOMContentLoaded', function() {
-        const addToCartBtn = document.querySelector('.add-to-cart-btn');
-        if (addToCartBtn) {
-          addToCartBtn.addEventListener('click', async function() {
-            const productId = this.getAttribute('data-product-id');
-            try {
-              const response = await fetch('/cart/add', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ productId })
-              });
-              const data = await response.json();
-              if (data.success) {
-                alert('Added to cart!');
-                // Optionally update cart counter here
-              } else {
-                alert(data.message || 'Failed to add to cart');
-              }
-            } catch (err) {
-              alert('Error adding to cart');
+    document.addEventListener('DOMContentLoaded', function() {
+      const addToCartBtn = document.querySelector('.add-to-cart-btn');
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', async function() {
+          const productId = Number(this.getAttribute('data-product-id'));
+          try {
+            const response = await fetch('/cart/add', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ productId })
+            });
+            const data = await response.json();
+            if (data.success) {
+              alert('Added to cart!');
+            } else {
+              alert(data.message || 'Failed to add to cart');
             }
-          });
-        }
-      });
+          } catch (err) {
+            alert('Error adding to cart');
+          }
+        });
+      }
+    });
