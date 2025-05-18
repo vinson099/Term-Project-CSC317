@@ -24,8 +24,9 @@ html(lang="en")
             a(href="about.html") About
             a(href="faq.html") FAQ
             a(href="login.html") Login
-            a(href="/cart/view", class="cart-icon") Cart 
-              span.cart-count 2
+            a(href="cart.html", class="cart-icon") 
+              |🛒
+              span.cart-count
             .profile-container
               a(href="profile.html")
                 img(src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380", alt="Profile", class="profile-icon")
@@ -40,22 +41,31 @@ html(lang="en")
     // Slideshow
     .slideshow-container
       .slideshow#slideshow
-        each product in store
-          img(src=product.image, alt=product.name)
+        each product in products
+          .slideshow-item
+            a(href=`/product/${product.id}`)
+              img(src=product.image_url, alt=product.title)
+            .slideshow-info
+              h3= product.title
+              p.price= `$${product.price.toLocaleString()}`
+              .slideshow-buttons
+                a(href=`/product/${product.id}`, class="btn btn-primary") Buy Now
+                button(onclick=`addToCart('${product.id}')`, class="btn btn-secondary") Add to Cart
 
     // Products Section
     .container
       h2.page-title#products Our Products
       .products-grid
-        each product in store
+        each product in products
           .product-card
             .product-image
-              img(src=product.image, alt=product.name)
+              img(src=product.image_url, alt=product.title)
             .product-info
-              h3.product-title= product.name
+              h3.product-title= product.title
               p.product-price= `$${product.price.toLocaleString()}`
-              a(href=`/product/${product.id}`, class="btn") View Details
-              a(href=`/product/${product.id}`, class="btn") Add to cart
+              .product-buttons
+                a(href=`/product/${product.id}`, class="btn btn-primary") Buy Now
+                button(onclick=`addToCart('${product.id}')`, class="btn btn-secondary") Add to Cart
 
     // Footer
     footer
