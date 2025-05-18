@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let timeoutId;
 
-    // Handle search input with debouncing
     searchInput.addEventListener('input', (e) => {
         clearTimeout(timeoutId);
         const query = e.target.value.trim();
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     });
 
-    // Handle form submission
     document.querySelector('.search-bar').addEventListener('submit', (e) => {
         e.preventDefault();
         const query = searchInput.value.trim();
@@ -31,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Perform search
     async function performSearch(query) {
         try {
             const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
@@ -49,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Display search results
     function displayResults(results) {
         if (!results.length) {
             searchResults.innerHTML = '<p class="no-results">No results found</p>';
@@ -70,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         searchResults.innerHTML = html;
     }
 
-    // Close search results when clicking outside
     document.addEventListener('click', (e) => {
         if (!searchResults.contains(e.target) && e.target !== searchInput) {
             searchResults.style.display = 'none';

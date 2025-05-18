@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    // Fetch user profile data
     const response = await fetch('/profile');
     if (!response.ok) {
       if (response.status === 401) {
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     const user = await response.json();
     if (user) {
-      // Update the account information section
       document.getElementById('full-name').value = user.fname;
       document.getElementById('email').value = user.username;
     }
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     alert('Failed to load profile data');
   }
 
-  // Handle logout
   const logoutBtn = document.getElementById('logout-btn');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
