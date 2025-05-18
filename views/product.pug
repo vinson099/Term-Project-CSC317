@@ -21,22 +21,21 @@ html
             input(type="text", placeholder="Search for products...")
           .nav-links
             a(href="/") Home
-            a(href="about.html") About
-            a(href="faq.html") FAQ
-            a(href="login.html") Login
-            a(href="cart.html", class="cart-icon") 
+            a(href="/about.html") About
+            a(href="/faq.html") FAQ
+            a(href="/login.html") Login
+            a(href="/cart/view", class="cart-icon") 
               |🛒
-              span.cart-count
-            .profile-container
-              a(href="profile.html")
-                img(src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380", alt="Profile", class="profile-icon")
+          .profile-container
+            a(href="profile.html")
+              img(src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380", alt="Profile", class="profile-icon")
     
     // Hero Section
     section.hero
       .container
         h1 Explore the Quantum Frontier
         p Discover our curated selection of cutting-edge quantum processors, qubit modules, and cryogenic systems.
-        a(href="product.html", class="btn") Shop Now
+        a(href="/", class="btn") Shop Now
         
     // Products Section
     if product
@@ -52,7 +51,7 @@ html
           ul
             each feature in JSON.parse(product.features)
               li= feature
-        a(href=`/product/${product.id}`, class="btn") Add to cart
+        button.btn.add-to-cart-btn(data-product-id=product.id) Add to cart
     
     // Footer
     footer
@@ -65,9 +64,9 @@ html
             h3 Quick Links
             ul
               li: a(href="/") Home
-              li: a(href="about.html") About Us
-              li: a(href="faq.html") FAQ
-              li: a(href="login.html") Login
+              li: a(href="/about.html") About Us
+              li: a(href="/faq.html") FAQ
+              li: a(href="/login.html") Login
           .footer-column
             h3 Customer Service
             ul
@@ -87,3 +86,28 @@ html
           p &copy; 2025 Smart Hub. All Rights Reserved.
     
     script(src="/script.js")
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+      addToCartBtns.forEach(function(btn) {
+        btn.addEventListener('click', async function() {
+          const productId = Number(this.getAttribute('data-product-id'));
+          try {
+            const response = await fetch('/cart/add', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ productId })
+            });
+            const data = await response.json();
+            if (data.success) {
+              alert('Added to cart!');
+            } else {
+              alert(data.message || 'Failed to add to cart');
+            }
+          } catch (err) {
+            alert('Error adding to cart');
+          }
+        });
+      });
+    });

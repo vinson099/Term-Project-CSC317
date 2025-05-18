@@ -55,10 +55,11 @@ slideshow.addEventListener('mouseleave', () => {
 });
 
 const loginForm = document.getElementById('login-form');
-        const registerForm = document.getElementById('register-form');
-        const goToRegister = document.getElementById('goToRegister');
-        const goToLogin = document.getElementById('goToLogin');
+const registerForm = document.getElementById('register-form');
+const goToRegister = document.getElementById('goToRegister');
+const goToLogin = document.getElementById('goToLogin');
 
+// Only set up form switching if both elements exist
         goToRegister.addEventListener('click', () => {
             loginForm.style.display = 'none';
             registerForm.style.display = 'block';
