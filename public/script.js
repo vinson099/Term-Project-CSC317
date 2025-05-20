@@ -60,12 +60,18 @@ const goToRegister = document.getElementById('goToRegister');
 const goToLogin = document.getElementById('goToLogin');
 
 // Only set up form switching if both elements exist
-        goToRegister.addEventListener('click', () => {
+
+
+
+
+        goToRegister.addEventListener('click', function(e) {
+            e.preventDefault();
             loginForm.style.display = 'none';
             registerForm.style.display = 'block';
         });
 
-        goToLogin.addEventListener('click', () => {
+        goToLogin.addEventListener('click', function(e) {
+            e.preventDefault();
             registerForm.style.display = 'none';
             loginForm.style.display = 'block';
         });

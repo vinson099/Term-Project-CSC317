@@ -17,7 +17,9 @@ db.serialize(() => {
        fname    TEXT,
        username TEXT UNIQUE NOT NULL,
        password TEXT NOT NULL,
-       cart TEXT DEFAULT '[]'
+       cart TEXT DEFAULT '[]',
+       addresses TEXT DEFAULT '[]',
+       payment TEXT DEFAULT '[]'
      );`,
     (err) => {
       if (err) console.error("Error creating users table:", err.message);
@@ -51,12 +53,16 @@ db.serialize(() => {
        stock INTEGER DEFAULT 0
      );`,
     (err) => {
+
       if (err) console.error("Error creating store table:", err.message);
       else console.log("Store table is ready.");
     }
   );
 });
-
+db.all("SELECT * FROM users", (err, rows) => {
+  if (err) console.error("Error fetching users:", err.message);
+  else console.log("Users:", rows);
+});
 module.exports = db;
 
 

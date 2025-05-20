@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${item.title}</h3>
                     <p class="price">$${item.price.toLocaleString()}</p>
                 </div>
-                <a href="/product/${item.id}" class="btn btn-primary">View</a>
+                <a href="/product/${item.id}" class="hero btn">View</a>
             </div>
         `).join('');
 

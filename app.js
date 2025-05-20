@@ -8,8 +8,7 @@ const authRoutes = require("./routes/login")
 const products = require('./routes/front')
 const product=require('./routes/front')
 const cartRoutes = require('./routes/cart');
-
-
+const checkoutRoutes = require('./routes/checkout');
 
 const profileRoutes = require("./routes/profile");
 const logoutRouter = require('./routes/logout');
@@ -34,9 +33,6 @@ app.use(express.static("public"));
 app.use('/profile', profileRoutes);
 app.use('/logout', logoutRouter);
 
-
-
-
 // Move these lines BEFORE your route definitions
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -47,17 +43,9 @@ app.use('/register', registerRoutes);
 app.use('/login', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/logout', logoutRouter);
+app.use('/checkout', checkoutRoutes);
 app.use('/', products);
 app.use('/product', product);
-
-
-
-
-// app.get("/", (req, res) => {
-//     res.sendFile(path.join(__dirname, "public", "login.html"));
-//   });
-
-  
 
 // Search API endpoint
 app.get("/api/search", (req, res) => {
@@ -76,8 +64,6 @@ app.get("/api/search", (req, res) => {
       res.json({ success: true, results });
     });
   });
-
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
