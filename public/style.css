@@ -293,7 +293,6 @@ align-items: center;
 .slideshow-item {
   position: relative;
   min-width: 280px;
-  background: var(--white);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -675,8 +674,6 @@ text-align: center;
 }
 
 
-
-
 /* Cart Page Styles */
 .cart-container {
 padding: 2rem 0;
@@ -1029,7 +1026,6 @@ margin-bottom: 2rem;
   display: flex;
   gap: 40px;
   margin: 40px 0;
-  background-color: var(--light);
   padding: 20px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -1335,16 +1331,6 @@ margin-bottom: 2rem;
     .profile-content .profile-section.active {
     display: block;
     }
-    
-    
-    
-    
-    
-
-
-  
-  
-  
 
 /* About Page */
 .about-container {
@@ -1417,12 +1403,6 @@ color: #4a6fa5;
 line-height: 1.8;
 }
 
-
-
-
-
-
-
 /* Responsiveness */
 @media (max-width: 1024px) {
   .footer-content {
@@ -1491,9 +1471,6 @@ line-height: 1.8;
       font-size: 2rem;
   }
 }
-
-
-
 
 
 /* Privacy Policy Specific Styles */
@@ -1886,4 +1863,24 @@ line-height: 1.8;
   padding: 1rem;
   text-align: center;
   color: var(--danger);
+}
+
+.message-box {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.message-box.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.message-box.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
 }

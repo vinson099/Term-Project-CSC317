@@ -1,5 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize search functionality when components are loaded
+document.addEventListener('componentsLoaded', () => {
     const searchInput = document.querySelector('.search-bar input');
+    if (!searchInput) {
+        console.error('Search input not found');
+        return;
+    }
+
     const searchResults = document.createElement('div');
     searchResults.className = 'search-results';
     searchResults.style.display = 'none';

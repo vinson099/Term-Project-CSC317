@@ -1,3 +1,18 @@
+// Function to display messages in the message box
+function showMessage(message, type = 'error') {
+    const messageBox = document.getElementById('message-box');
+    messageBox.textContent = message;
+    messageBox.className = `message-box ${type}`;
+    messageBox.style.display = 'block';
+    
+    // Auto-hide success messages after 3 seconds
+    if (type === 'success') {
+        setTimeout(() => {
+            messageBox.style.display = 'none';
+        }, 3000);
+    }
+}
+
 document.getElementById('register-btn').addEventListener('click', async() => {
     const fname = document.getElementById('register-name').value;
     const username = document.getElementById('register-email').value;
@@ -5,11 +20,11 @@ document.getElementById('register-btn').addEventListener('click', async() => {
     const confirmPassword = document.getElementById('register-confirm-password').value;
 
     if(!fname || !username || !password) {
-        return alert('Please fill in all fields');
+        return showMessage('Please fill in all fields');
     }
     
     if(password !== confirmPassword) {
-        return alert("Passwords do not match");
+        return showMessage("Passwords do not match");
     }
     
     try {
@@ -22,14 +37,14 @@ document.getElementById('register-btn').addEventListener('click', async() => {
         const result = await response.json();
         
         if (response.ok && result.success) {
-            alert(result.message);
+            showMessage(result.message, 'success');
             
         } else {
-            alert(result.message || 'Registration failed');
+            showMessage(result.message || 'Registration failed');
         }
     } catch (error) {
         console.error('Registration error:', error);
-        alert('An error occurred during registration');
+        showMessage('An error occurred during registration');
     }
 });
 
@@ -39,7 +54,7 @@ document.getElementById("login-btn").addEventListener("click", async() => {
     const password = document.getElementById("login-password").value;
   
     if (!username || !password) {
-      return alert("Please enter both username and password");
+      return showMessage("Please enter both username and password");
     }
 
     try {
@@ -53,14 +68,14 @@ document.getElementById("login-btn").addEventListener("click", async() => {
       
       if (resp.ok && result.success) {
         localStorage.setItem('username', username);
-        alert(result.message);
+        showMessage(result.message, 'success');
         window.location.href = result.redirect;
       } else {
-        alert(result.message || "Login failed");
+        showMessage(result.message || "Login failed");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("An error occurred during login");
+      showMessage("An error occurred during login");
     }
 });
 

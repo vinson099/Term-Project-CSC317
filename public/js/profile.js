@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const response = await fetch('/profile');
       if (!response.ok) {
           if (response.status === 401) {
-              window.location.href = '/login.html';
+              window.location.href = '/html/login.html';
               return;
           }
           throw new Error('Failed to load profile');
@@ -89,7 +89,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
               const data = await response.json();
               if (data.success) {
-                  window.location.href = '/login.html';
+                  window.location.href = '/html/login.html';
+                  alert ('successfully logged out!!');
               } else {
                   alert('Logout failed. Please try again.');
               }

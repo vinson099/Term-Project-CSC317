@@ -5,12 +5,8 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Shopping Cart - SmartHub
     link(rel="stylesheet", href="/style.css")
-    script(src="/cart.js")
+    script(src="/js/cart.js")
     style.
-      .header, .footer {
-        background: #222;
-        color: #fff;
-      }
       .header-content, .footer-content {
         display: flex;
         justify-content: space-between;
@@ -67,16 +63,16 @@ html(lang="en")
             input(type="text", placeholder="Search for products...")
           .nav-links
             a(href="/") Home
-            a(href="/about.html") About
-            a(href="/faq.html") FAQ
-            a(href="/login.html") Login
-            a(href="/cart/view", class="cart-icon") 
+            a(href="/html/about.html") About
+            a(href="/html/faq.html") FAQ
+            a(href="/html/login.html") Login
+            a(href="cart/view", class="cart-icon") 
               |🛒
-            a(href="/profile.html")
-              img.profile-icon(
-                src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380",
-                alt="Profile"
-              )
+              span.cart-count
+            .profile-container
+              a(href="/html/profile.html")
+                img(src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?w=1380", alt="Profile", class="profile-icon")
+
     section.hero
       .container
         h1 Shop the latest trends
@@ -115,11 +111,11 @@ html(lang="en")
         .footer-column
           h3 Customer Service
           ul
-            li: a(href="/contact.html") Contact Us
-            li: a(href="/shipping.html") Shipping Policy
-            li: a(href="/returns.html") Returns & Refunds
-            li: a(href="/privacy.html") Privacy Policy
-            li: a(href="/terms.html") Terms of Service
+              li: a(href="/html/contact.html") Contact Us
+              li: a(href="/html/shipping.html") Shipping Policy
+              li: a(href="/html/returns.html") Return Policy
+              li: a(href="/html/privacy.html") Privacy Policy
+              li: a(href="/html/terms.html") Terms of Service
         .footer-column
           h3 Connect With Us
           ul
@@ -129,4 +125,4 @@ html(lang="en")
             li: a(href="https://www.linkedin.com/") LinkedIn
       .copyright
         p &copy; 2025 Smart Hub. All rights reserved.
-    script(src="/search.js")
+    script(src="/js/search.js")

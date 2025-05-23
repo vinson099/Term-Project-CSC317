@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', function() {
-       window.location.href="/checkout.html"
+       window.location.href="/html/checkout.html"
       });
     }
   }

@@ -81,6 +81,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     } catch (error) {
         console.error('Error checking session:', error);
-        window.location.href = '/login.html';
+        window.location.href = '/html/login.html';
     }
 }); 
